@@ -9,6 +9,7 @@ DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
             'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
 
 
+@st.cache
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -18,7 +19,7 @@ def load_data(nrows):
 
 data_load_state = st.text('Loading data...')
 data = load_data(10000)
-data_load_state.text('Loading data...done!')
+data_load_state.text("Done! (using st.cache)")
 
 if st.checkbox('Show raw data'):
     st.subheader('Raw data')
